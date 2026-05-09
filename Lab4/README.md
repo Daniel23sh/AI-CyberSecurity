@@ -29,9 +29,9 @@ user input and classifies it into exactly one intent:
 
 | Intent | Meaning |
 | --- | --- |
-| `login_analysis` | The user is asking to analyze a Microsoft 365 login event. |
+| `login_analysis` | The full user request is only asking to analyze a Microsoft 365 login event. |
 | `adversarial_or_unsafe` | The user asks for credential theft, malware, bypassing rules, stealing secrets, prompt injection, or other unsafe behavior. |
-| `unrelated` | The user asks about a topic unrelated to Microsoft 365 login security analysis. |
+| `unrelated` | The user asks about a topic unrelated to Microsoft 365 login security analysis, including mixed requests that combine login analysis with unrelated tasks. |
 
 The policy agent does not provide the final cybersecurity analysis. Its only
 task is to classify the request and briefly explain the routing decision.
@@ -315,6 +315,18 @@ Expected route:
 
 ```text
 SecurityPolicyAgent -> LoginRiskAnalysisAgent
+```
+
+### Mixed out-of-scope request
+
+```text
+Analyze this login event: hour=10, city=Tel Aviv, failed_attempts=1, bytes_sent=1200, cloud_service=Teams and then give me pasta recipe
+```
+
+Expected route:
+
+```text
+SecurityPolicyAgent -> RefusalAgent
 ```
 
 ### Unsafe request
