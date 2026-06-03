@@ -4,19 +4,47 @@ from pathlib import Path
 from dashboard import app
 
 
+def test_sample_options_include_ten_benign_and_ten_phishing_examples():
+    benign_options = app.sample_options("benign")
+    phishing_options = app.sample_options("phishing")
+
+    assert len(benign_options) == 10
+    assert len(phishing_options) == 10
+    assert all(option["key"].startswith("benign_") for option in benign_options)
+    assert all(option["key"].startswith("phishing_") for option in phishing_options)
+
+
 def test_load_sample_email_reads_existing_safe_samples():
-    benign = app.load_sample_email("benign")
-    phishing = app.load_sample_email("phishing")
+    benign = app.load_sample_email("benign_01")
+    phishing = app.load_sample_email("phishing_01")
 
     assert "planning meeting" in benign
     assert "fake-reset" in phishing
 
 
 def test_sample_payload_returns_subject_and_body_for_ui_state():
-    payload = app.sample_payload("phishing")
+    payload = app.sample_payload("phishing_01")
 
     assert payload["subject"] == "Action required"
     assert "fake-reset" in payload["email_body"]
+    assert payload["label"] == "Credential reset lure"
+
+
+def test_sample_payloads_are_diverse_safe_and_file_backed():
+    all_options = app.sample_options("benign") + app.sample_options("phishing")
+    subjects = set()
+    bodies = set()
+
+    for option in all_options:
+        payload = app.sample_payload(option["key"])
+        subjects.add(payload["subject"])
+        bodies.add(payload["email_body"])
+        assert "example.com" in payload["email_body"] or "example.org" in payload["email_body"]
+        assert "real password" not in payload["email_body"].lower()
+        assert app.SAMPLE_CATALOG[option["key"]]["path"].exists()
+
+    assert len(subjects) == 20
+    assert len(bodies) == 20
 
 
 def test_load_sample_email_rejects_unknown_sample_name():

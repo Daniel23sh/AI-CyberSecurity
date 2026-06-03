@@ -1,0 +1,5 @@
+Cloud storage notice:
+
+A document was shared with you and will expire today. Click https://example.com/fake-cloud-share and reset your password if prompted to keep access.
+
+This is a safe demo message with a fake cloud link.

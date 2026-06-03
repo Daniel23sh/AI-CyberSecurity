@@ -1,0 +1,7 @@
+Hello control owners,
+
+Internal audit is collecting evidence for the quarterly access review.
+Upload approved screenshots through the internal evidence portal at https://example.org/audit/evidence.
+
+Thank you,
+Audit team

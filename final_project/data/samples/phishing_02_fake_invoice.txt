@@ -1,0 +1,5 @@
+Accounts payable alert:
+
+Urgent payment is overdue for invoice 8841. Open https://example.com/fake-invoice-review and approve the wire transfer immediately to avoid account suspension.
+
+This is a safe demo message with a fake link.

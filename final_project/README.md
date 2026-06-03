@@ -78,6 +78,7 @@ streamlit run dashboard/app.py
 ```
 
 The dashboard works locally and does not require external APIs or API keys.
+It includes 10 benign demo emails and 10 phishing-style demo emails so you can compare different prediction, risk, indicator, and MITRE outcomes.
 
 ## Run Tests
 

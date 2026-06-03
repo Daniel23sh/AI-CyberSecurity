@@ -15,13 +15,127 @@ if str(PROJECT_ROOT) not in sys.path:
 from src.pipeline import analyze_email  # noqa: E402
 
 
-SAMPLE_FILES = {
-    "benign": PROJECT_ROOT / "data" / "samples" / "benign_email.txt",
-    "phishing": PROJECT_ROOT / "data" / "samples" / "phishing_email.txt",
-}
-SAMPLE_SUBJECTS = {
-    "benign": "Team lunch update",
-    "phishing": "Action required",
+SAMPLE_CATALOG = {
+    "benign_01": {
+        "type": "benign",
+        "label": "Team planning reminder",
+        "subject": "Team lunch update",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_email.txt",
+    },
+    "benign_02": {
+        "type": "benign",
+        "label": "IT maintenance notice",
+        "subject": "Scheduled VPN maintenance",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_02_it_maintenance.txt",
+    },
+    "benign_03": {
+        "type": "benign",
+        "label": "HR policy update",
+        "subject": "Updated holiday policy",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_03_hr_policy.txt",
+    },
+    "benign_04": {
+        "type": "benign",
+        "label": "Invoice clarification",
+        "subject": "Invoice correction from finance",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_04_invoice_clarification.txt",
+    },
+    "benign_05": {
+        "type": "benign",
+        "label": "Security awareness",
+        "subject": "Security awareness training recap",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_05_security_awareness.txt",
+    },
+    "benign_06": {
+        "type": "benign",
+        "label": "Support ticket update",
+        "subject": "Support ticket resolved",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_06_support_ticket.txt",
+    },
+    "benign_07": {
+        "type": "benign",
+        "label": "Vendor newsletter",
+        "subject": "Quarterly vendor newsletter",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_07_vendor_newsletter.txt",
+    },
+    "benign_08": {
+        "type": "benign",
+        "label": "Calendar invite",
+        "subject": "Calendar invite: design review",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_08_calendar_invite.txt",
+    },
+    "benign_09": {
+        "type": "benign",
+        "label": "Password policy notice",
+        "subject": "Password policy reminder",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_09_password_policy.txt",
+    },
+    "benign_10": {
+        "type": "benign",
+        "label": "Internal audit request",
+        "subject": "Internal audit evidence request",
+        "path": PROJECT_ROOT / "data" / "samples" / "benign_10_internal_audit.txt",
+    },
+    "phishing_01": {
+        "type": "phishing",
+        "label": "Credential reset lure",
+        "subject": "Action required",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_email.txt",
+    },
+    "phishing_02": {
+        "type": "phishing",
+        "label": "Fake invoice link",
+        "subject": "Urgent invoice payment required",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_02_fake_invoice.txt",
+    },
+    "phishing_03": {
+        "type": "phishing",
+        "label": "Attachment lure",
+        "subject": "Document shared with you",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_03_attachment_lure.txt",
+    },
+    "phishing_04": {
+        "type": "phishing",
+        "label": "Shortened URL",
+        "subject": "Security alert: verify now",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_04_shortened_url.txt",
+    },
+    "phishing_05": {
+        "type": "phishing",
+        "label": "IP address link",
+        "subject": "Mailbox access warning",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_05_ip_address.txt",
+    },
+    "phishing_06": {
+        "type": "phishing",
+        "label": "Bank refund lure",
+        "subject": "Refund pending confirmation",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_06_bank_refund.txt",
+    },
+    "phishing_07": {
+        "type": "phishing",
+        "label": "Cloud storage spoof",
+        "subject": "Shared file expires today",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_07_cloud_storage.txt",
+    },
+    "phishing_08": {
+        "type": "phishing",
+        "label": "Crypto wallet lure",
+        "subject": "Crypto wallet verification",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_08_crypto_wallet.txt",
+    },
+    "phishing_09": {
+        "type": "phishing",
+        "label": "Executive gift card",
+        "subject": "Quick favor before meeting",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_09_gift_card.txt",
+    },
+    "phishing_10": {
+        "type": "phishing",
+        "label": "MFA fatigue lure",
+        "subject": "MFA push verification failed",
+        "path": PROJECT_ROOT / "data" / "samples" / "phishing_10_mfa_fatigue.txt",
+    },
 }
 DEFAULT_AUDIT_LOG = PROJECT_ROOT / "logs" / "audit_log.csv"
 SAFE_AUDIT_COLUMNS = [
@@ -47,19 +161,34 @@ INDICATOR_FIELDS = [
 
 
 def load_sample_email(sample_name: str) -> str:
-    sample_path = SAMPLE_FILES.get(sample_name)
-    if sample_path is None:
+    sample = SAMPLE_CATALOG.get(sample_name)
+    if sample is None:
         raise ValueError(f"Unknown sample: {sample_name}")
+    sample_path = sample["path"]
     return sample_path.read_text(encoding="utf-8").strip()
 
 
 def sample_payload(sample_name: str) -> dict[str, str]:
-    if sample_name not in SAMPLE_SUBJECTS:
+    sample = SAMPLE_CATALOG.get(sample_name)
+    if sample is None:
         raise ValueError(f"Unknown sample: {sample_name}")
     return {
-        "subject": SAMPLE_SUBJECTS[sample_name],
+        "label": str(sample["label"]),
+        "subject": str(sample["subject"]),
         "email_body": load_sample_email(sample_name),
     }
+
+
+def sample_options(sample_type: str) -> list[dict[str, str]]:
+    return [
+        {
+            "key": key,
+            "label": str(sample["label"]),
+            "subject": str(sample["subject"]),
+        }
+        for key, sample in SAMPLE_CATALOG.items()
+        if sample["type"] == sample_type
+    ]
 
 
 def read_audit_preview(
@@ -147,16 +276,31 @@ def _render_project_summary() -> None:
 def _render_sample_loader() -> None:
     st.markdown("**Load a safe demo sample**")
     benign_col, phishing_col = st.columns(2)
+    benign_options = sample_options("benign")
+    phishing_options = sample_options("phishing")
+
+    selected_benign = benign_col.selectbox(
+        "Benign sample",
+        options=[option["key"] for option in benign_options],
+        format_func=lambda key: SAMPLE_CATALOG[key]["label"],
+        key="selected_benign_sample",
+    )
     benign_col.button(
-        "Load benign sample",
+        "Load selected benign sample",
         on_click=_load_sample_into_state,
-        args=("benign",),
+        args=(selected_benign,),
         width="stretch",
     )
+    selected_phishing = phishing_col.selectbox(
+        "Phishing sample",
+        options=[option["key"] for option in phishing_options],
+        format_func=lambda key: SAMPLE_CATALOG[key]["label"],
+        key="selected_phishing_sample",
+    )
     phishing_col.button(
-        "Load phishing sample",
+        "Load selected phishing sample",
         on_click=_load_sample_into_state,
-        args=("phishing",),
+        args=(selected_phishing,),
         width="stretch",
     )
 

@@ -1,0 +1,5 @@
+Wallet security alert:
+
+Urgent crypto wallet verification is required. Confirm credentials at https://example.com/fake-wallet-verify or your account will be suspended.
+
+This is a safe demo message with no real wallet request.

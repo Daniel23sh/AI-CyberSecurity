@@ -1,0 +1,6 @@
+Security team:
+
+Verify now using https://bit.ly/fake-security-check. Your account access is limited until you login and confirm your credentials.
+Reference notice: https://example.com/fake-security-info.
+
+This is a safe demo message using an example shortened URL.
