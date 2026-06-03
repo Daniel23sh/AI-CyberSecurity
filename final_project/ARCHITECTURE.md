@@ -28,9 +28,6 @@ audit_logger.py
   |
   v
 pipeline.py
-  |
-  v
-Streamlit dashboard
 ```
 
 ## Module Responsibilities
@@ -45,11 +42,9 @@ Streamlit dashboard
 | MITRE mapping | `src/mitre_mapper.py` | Convert indicators and classifier evidence into relevant MITRE ATT&CK tactics and techniques. | Lab1, Lab5 |
 | Risk scoring | `src/risk_scoring.py` | Combine model confidence and indicator severity into an explainable numeric score and risk level. | Lab3 |
 | Explanation | `src/explainer.py` | Generate analyst-oriented explanations that cite model output, indicators, MITRE mapping, and risk factors. | Lab1, Lab3 |
-| Recommendation | `src/recommendations.py` | Recommend next analyst steps while preserving human approval for disruptive actions. | Lab3, Lab4 |
+| Recommendation | `src/recommendations.py` | Recommend analyst actions while preserving human approval for disruptive actions. | Lab3, Lab4 |
 | Audit logging | `src/audit_logger.py` | Write safe CSV audit rows containing metadata only, without full email bodies. | Lab5 |
 | Full pipeline | `src/pipeline.py` | Orchestrate preprocessing, prediction, extraction, mapping, scoring, explanation, recommendation, and logging. | Lab5 |
-| Dashboard | `app/streamlit_app.py` | Provide a simple demo interface for analysts to submit email text and inspect JSON-style analysis output. | Lab4, Lab5 |
-
 ## Expected JSON Output Structure
 
 ```json
@@ -106,4 +101,4 @@ Streamlit dashboard
 
 ## Human-In-The-Loop Principle
 
-The assistant recommends actions but does not automatically block, delete, quarantine, or forward emails. Any disruptive action should require analyst review and approval. The dashboard should make this clear through recommendations and status fields, not hidden automation.
+The assistant recommends actions but does not automatically block, delete, quarantine, or forward emails. Any disruptive action should require analyst review and approval.

@@ -23,12 +23,29 @@ from src.preprocessing import normalize_email_text
 
 
 def normalize_labels(labels: pd.Series) -> pd.Series:
-    numeric_labels = pd.to_numeric(labels, errors="coerce")
-    invalid_mask = numeric_labels.isna() | ~numeric_labels.isin([0, 1])
+    normalized = labels.astype(str).str.strip().str.lower()
+    mapped_labels = normalized.map(
+        {
+            "0": 0,
+            "benign": 0,
+            "ham": 0,
+            "legitimate": 0,
+            "safe": 0,
+            "1": 1,
+            "phishing": 1,
+            "spam": 1,
+            "malicious": 1,
+            "suspicious": 1,
+        }
+    )
+    invalid_mask = mapped_labels.isna()
     if invalid_mask.any():
         invalid_values = labels.loc[invalid_mask].drop_duplicates().tolist()
-        raise ValueError(f"Labels must be 0/1 or numeric strings. Invalid: {invalid_values}")
-    return numeric_labels.astype(int)
+        raise ValueError(
+            "Labels must be 0/1 or known phishing/benign strings. "
+            f"Invalid: {invalid_values}"
+        )
+    return mapped_labels.astype(int)
 
 
 def build_model_pipeline() -> Pipeline:

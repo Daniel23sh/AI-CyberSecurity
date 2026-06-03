@@ -37,11 +37,20 @@ def map_to_mitre(
 ) -> list[dict[str, object]]:
     mappings: list[dict[str, object]] = []
     is_phishing = (prediction_result or {}).get("prediction") == "phishing"
+    has_link_phishing_evidence = bool(
+        is_phishing
+        or indicators.get("urgent_language")
+        or indicators.get("credential_request")
+        or indicators.get("suspicious_keywords")
+        or indicators.get("shortened_url_hints")
+    )
 
-    if _has_values(indicators, "has_url"):
+    if _has_values(indicators, "has_url") and has_link_phishing_evidence:
         evidence = ["URL found"]
         if indicators.get("urgent_language"):
             evidence.append("Urgent language found")
+        if indicators.get("credential_request"):
+            evidence.append("Credential request language found")
         if is_phishing:
             evidence.append("Model classified email as phishing")
         _add_mapping(

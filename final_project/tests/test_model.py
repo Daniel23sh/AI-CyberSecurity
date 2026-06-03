@@ -1,12 +1,14 @@
 from pathlib import Path
 
 import joblib
+import pandas as pd
 import pytest
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 
 from src import model
+from src.train_baseline import normalize_labels
 
 
 def _tiny_pipeline():
@@ -45,3 +47,9 @@ def test_load_model_raises_clear_error_when_missing(tmp_path):
 
     with pytest.raises(FileNotFoundError, match="Train the baseline model"):
         model.load_model(missing_path)
+
+
+def test_normalize_labels_accepts_numeric_and_string_labels():
+    labels = normalize_labels(pd.Series(["benign", "phishing", "0", "1", "ham", "spam"]))
+
+    assert labels.tolist() == [0, 1, 0, 1, 0, 1]

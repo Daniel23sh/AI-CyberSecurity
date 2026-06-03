@@ -1,6 +1,6 @@
 # AI-Based Phishing Detection and Risk Assessment SOC Assistant
 
-This final project builds an offline-first SOC assistant for suspicious email review. It classifies phishing risk, extracts deterministic indicators, maps supported evidence to MITRE ATT&CK, explains the risk, recommends analyst next steps, and writes safe audit metadata without storing full email bodies.
+This final project builds an offline-first SOC assistant for suspicious email review. It classifies phishing risk, extracts deterministic indicators, maps supported evidence to MITRE ATT&CK, explains the risk, recommends analyst actions, and writes safe audit metadata without storing full email bodies.
 
 ## Workflow
 
@@ -15,8 +15,6 @@ Email input
   -> recommendation
   -> safe audit log
 ```
-
-The Streamlit dashboard is intentionally deferred until the command-line pipeline is stable.
 
 ## Data
 

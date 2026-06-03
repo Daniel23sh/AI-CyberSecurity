@@ -39,13 +39,3 @@ Run tests from `final_project/`:
 3. Output format remains JSON-compatible.
 4. No secrets are added.
 5. No full email bodies are written to logs.
-
-## Manual Streamlit Testing
-
-The Streamlit dashboard is not part of the current milestone. After the command-line pipeline is stable, run the dashboard demo with:
-
-```bash
-streamlit run app/streamlit_app.py
-```
-
-Manual checks should confirm that the app accepts email text, displays classification, indicators, MITRE mappings, risk, explanations, and recommendations, and does not show or write unsafe secrets.

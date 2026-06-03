@@ -23,3 +23,9 @@ def test_no_supported_indicators_returns_no_mappings():
     indicators = extract_indicators("Hello team, lunch is at noon today.")
 
     assert map_to_mitre(indicators) == []
+
+
+def test_benign_url_without_phishing_evidence_returns_no_mappings():
+    indicators = extract_indicators("Please review the agenda at https://example.com/team.")
+
+    assert map_to_mitre(indicators, {"prediction": "benign", "phishing_probability": 0.04}) == []
