@@ -50,6 +50,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+.cache/
 
 # Translations
 *.mo
@@ -151,6 +152,7 @@ activemq-data/
 .env
 .envrc
 .venv
+.venv/
 env/
 venv/
 ENV/
@@ -202,6 +204,9 @@ cython_debug/
 # .vscode/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
+*.tmp
+*.bak
+.DS_Store
 
 # Ruff stuff:
 .ruff_cache/
@@ -221,11 +226,14 @@ __marimo__/
 final_project/data/raw/*.csv
 final_project/data/processed/*.csv
 final_project/logs/*.csv
+logs/*.csv
+logs/*.log
 final_project/models/*.pkl
 final_project/models/*.joblib
 final_project/models/*.pt
 final_project/notebooks/*.ipynb
 !final_project/notebooks/01_data_exploration.ipynb
 final_project/PROJECT_PLAN.md
+final_project/reports/coworker_handoff.md
 final_project/AGENTS.md
 LABS_SUMMARY.md
