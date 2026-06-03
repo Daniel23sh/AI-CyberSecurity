@@ -216,3 +216,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# AI-CyberSecurity final project generated data and model artifacts
+final_project/data/raw/*.csv
+final_project/data/processed/*.csv
+final_project/models/*.pkl
+final_project/models/*.joblib
+final_project/models/*.pt
+final_project/notebooks/*.ipynb
+final_project/PROJECT_PLAN.md
+final_project/AGENTS.md
+LABS_SUMMARY.md
