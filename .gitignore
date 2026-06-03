@@ -224,6 +224,7 @@ final_project/models/*.pkl
 final_project/models/*.joblib
 final_project/models/*.pt
 final_project/notebooks/*.ipynb
+!final_project/notebooks/01_data_exploration.ipynb
 final_project/PROJECT_PLAN.md
 final_project/AGENTS.md
 LABS_SUMMARY.md
