@@ -1,0 +1,7 @@
+Hi team,
+
+This is the monthly security awareness recap.
+The training notes explain how to report suspicious emails safely through https://example.org/security/reporting.
+
+Thanks,
+Security awareness team

@@ -1,0 +1,7 @@
+Hello,
+
+Your support ticket about the printer queue has been resolved.
+You can see the ticket notes at https://example.org/helpdesk/ticket-4582.
+
+Regards,
+IT support

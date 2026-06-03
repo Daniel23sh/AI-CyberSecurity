@@ -1,0 +1,7 @@
+Hello finance team,
+
+The vendor corrected the purchase order reference for last month's invoice.
+The approved invoice details are in the internal tracker at https://example.org/finance/invoices.
+
+Regards,
+Accounts payable

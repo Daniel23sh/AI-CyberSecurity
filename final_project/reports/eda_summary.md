@@ -10,6 +10,10 @@ This report summarizes Step 4 of the final project plan: exploratory data analys
 
 The fields needed for the first phishing detection baseline are present: email text can be built from `subject` and `body`, the supervised target is `label`, and the `urls` column provides a binary URL indicator.
 
+Label `1` means phishing/spam. Label `0` means benign/legitimate.
+
+After preprocessing, the final processed dataset contains 39,085 rows and 9 columns: `sender`, `subject`, `body`, `label`, `has_url`, `text`, `text_length`, `subject_length`, and `body_length`.
+
 ## Missing Values
 
 | Column | Missing rows |
@@ -61,7 +65,7 @@ By label:
 | 0 | 5,969 | 11,343 |
 | 1 | 6,953 | 14,889 |
 
-The raw `urls` column is binary rather than a URL count. It should continue to be converted to `has_url` during preprocessing and can be used as a lightweight supporting feature or explanatory signal.
+The raw CEAS_08 `urls` column is binary rather than a URL count. During preprocessing, it is converted to `has_url` and is not extracted from email text for the dataset feature. It can be used as a lightweight supporting feature or explanatory signal.
 
 ## Suspicious Token Patterns
 
@@ -77,3 +81,7 @@ The raw `urls` column is binary rather than a URL count. It should continue to b
 | `credential_language` | 256 | 4 | 252 | 1.56% |
 
 The token patterns are noisy. `click` is the strongest simple phishing-oriented signal in this scan, while terms such as `password`, `login`, and `verify` appear mostly in label `0` messages in this dataset. Indicator extraction should therefore treat these patterns as evidence to explain, not as standalone proof of phishing.
+
+## Final EDA Conclusion
+
+The dataset is suitable for the baseline phishing model. It has enough rows for a simple supervised baseline, moderate label balance, no missing labels or bodies in the processed dataset, and only a small number of rows removed during preprocessing.

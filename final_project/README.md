@@ -69,9 +69,26 @@ For a benign sample:
 
 The CLI prints JSON-compatible output with prediction, indicators, MITRE mappings, risk, explanation, recommendations, audit status, and input metadata.
 
+## Run Dashboard
+
+After training the baseline model, run the local dashboard from `final_project/`:
+
+```bash
+streamlit run dashboard/app.py
+```
+
+The dashboard works locally and does not require external APIs or API keys.
+It includes 10 benign demo emails and 10 phishing-style demo emails so you can compare different prediction, risk, indicator, and MITRE outcomes.
+
 ## Run Tests
 
 Run from `final_project/`:
+
+```bash
+pytest
+```
+
+Or with the project virtual environment:
 
 ```bash
 .venv/bin/python -m pytest tests -q

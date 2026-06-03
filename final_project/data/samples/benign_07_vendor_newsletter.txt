@@ -1,0 +1,7 @@
+Hello subscriber,
+
+The quarterly vendor newsletter is available with product maintenance dates and release notes.
+Read the update at https://example.com/newsletter/q2.
+
+Best,
+Example vendor team

@@ -1,0 +1,5 @@
+Document delivery notice:
+
+Please open the attached invoice.pdf document and verify your account details before the file expires. If the attachment does not open, use https://example.com/fake-document.
+
+This is a safe demo message with no real attachment.

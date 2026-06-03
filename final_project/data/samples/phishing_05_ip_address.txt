@@ -1,0 +1,5 @@
+Mailbox warning:
+
+Action required immediately. Login at http://192.0.2.10/fake-mailbox to restore email access, then visit https://example.com/fake-mailbox-help for details.
+
+This is a safe demo message using a documentation IP address.

@@ -1,0 +1,5 @@
+Refund department:
+
+Your bank refund is pending. Verify your account and payment details at https://example.com/fake-refund before the limited time window closes.
+
+This is a safe demo message with no real bank request.

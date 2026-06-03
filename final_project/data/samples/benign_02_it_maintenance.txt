@@ -1,0 +1,7 @@
+Hello team,
+
+The VPN gateway maintenance window is scheduled for Friday from 18:00 to 19:00.
+No action is required from users, and the change record is available at https://example.org/change-1024.
+
+Regards,
+Infrastructure team

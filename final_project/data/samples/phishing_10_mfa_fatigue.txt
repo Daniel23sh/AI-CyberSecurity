@@ -1,0 +1,5 @@
+MFA verification center:
+
+Multiple login attempts were detected. Approve the next push immediately and verify your account at https://example.com/fake-mfa-check.
+
+This is a safe demo message with a fake verification link.
