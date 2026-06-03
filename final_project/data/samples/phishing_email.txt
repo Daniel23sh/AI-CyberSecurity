@@ -1,0 +1,6 @@
+Security team notice:
+
+Action required immediately. Your account will be suspended unless you verify your login details now.
+Visit https://example.com/fake-reset and reset your password before the limited time window expires.
+
+This is a safe demo example and does not contain a real credential request.

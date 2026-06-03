@@ -6,7 +6,11 @@
 pytest
 ```
 
-Run tests from the repository root or from `final_project/` once the package structure is in place.
+Run tests from `final_project/`:
+
+```bash
+.venv/bin/python -m pytest tests -q
+```
 
 ## What To Test
 
@@ -17,12 +21,14 @@ Run tests from the repository root or from `final_project/` once the package str
 - Audit logger behavior, especially that full email bodies are not written.
 - End-to-end pipeline output structure and JSON compatibility.
 
-## Expected Future Test Files
+## Core Test Files
 
+- `tests/test_data_loader.py`
+- `tests/test_model.py`
 - `tests/test_indicator_extractor.py`
 - `tests/test_mitre_mapper.py`
-- `tests/test_risk_judge.py`
-- `tests/test_recommender.py`
+- `tests/test_risk_scoring.py`
+- `tests/test_explainer_recommendations.py`
 - `tests/test_audit_logger.py`
 - `tests/test_pipeline.py`
 
@@ -33,14 +39,3 @@ Run tests from the repository root or from `final_project/` once the package str
 3. Output format remains JSON-compatible.
 4. No secrets are added.
 5. No full email bodies are written to logs.
-
-## Manual Streamlit Testing
-
-Run the dashboard demo with:
-
-```bash
-streamlit run app/streamlit_app.py
-```
-
-Manual checks should confirm that the app accepts email text, displays classification, indicators, MITRE mappings, risk, explanations, and recommendations, and does not show or write unsafe secrets.
-

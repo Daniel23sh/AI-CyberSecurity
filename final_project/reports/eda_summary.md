@@ -31,7 +31,7 @@ The current preprocessing choice to remove blank or missing subjects is reasonab
 | 0 | 17,312 | 44.22 |
 | 1 | 21,842 | 55.78 |
 
-The dataset is moderately imbalanced toward label `1`, but not enough to block a simple TF-IDF plus logistic regression baseline. Future training should use stratified splits and report precision, recall, F1, and a confusion matrix instead of accuracy alone.
+The dataset is moderately imbalanced toward label `1`, but not enough to block a simple TF-IDF plus logistic regression baseline. Baseline training uses stratified splits and reports precision, recall, F1, and a confusion matrix instead of accuracy alone.
 
 ## Text Length
 
@@ -76,12 +76,4 @@ The raw `urls` column is binary rather than a URL count. It should continue to b
 | `password` | 392 | 8 | 384 | 2.04% |
 | `credential_language` | 256 | 4 | 252 | 1.56% |
 
-The token patterns are noisy. `click` is the strongest simple phishing-oriented signal in this scan, while terms such as `password`, `login`, and `verify` appear mostly in label `0` messages in this dataset. Later indicator extraction should therefore treat these patterns as evidence to explain, not as standalone proof of phishing.
-
-## Implications For Next Steps
-
-- Keep preprocessing deterministic and consistent between training and prediction.
-- Use `text` as the main baseline model input.
-- Preserve `has_url`, text length, and suspicious token evidence for explanation and risk scoring.
-- Evaluate the model with stratified train/test splits and report accuracy, precision, recall, F1, and confusion matrix.
-- Treat rule-based indicators as analyst-supporting evidence, not automatic blocking decisions.
+The token patterns are noisy. `click` is the strongest simple phishing-oriented signal in this scan, while terms such as `password`, `login`, and `verify` appear mostly in label `0` messages in this dataset. Indicator extraction should therefore treat these patterns as evidence to explain, not as standalone proof of phishing.
