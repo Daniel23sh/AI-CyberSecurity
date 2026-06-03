@@ -480,22 +480,3 @@ This is a lightweight prototype, not a production SOC platform. The model was tr
 The rule-based indicators and risk scoring make the system explainable, but they can create false positives when benign messages contain words such as password, account, invoice, or update.
 
 The dashboard analyzes manual input and safe demo samples. It is not integrated with a real mailbox, SIEM, SOAR platform, or NVIDIA Morpheus streaming deployment.
-
-## Final Submission Notes
-
-The code prototype, tests, safe samples, pipeline, and dashboard are complete. Course submission materials may still need to be finalized separately:
-
-- final written report
-- poster
-- 5-7 minute demo recording
-- standard project form, if the instructor requires a separate template
-
-Useful supporting files:
-
-| File | Purpose |
-| --- | --- |
-| `ARCHITECTURE.md` | architecture and module overview |
-| `TESTING.md` | testing guide |
-| `reports/eda_summary.md` | EDA findings |
-| `reports/project_form.md` | project form draft |
-| `notebooks/01_data_exploration.ipynb` | EDA notebook |
