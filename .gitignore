@@ -220,6 +220,7 @@ __marimo__/
 # AI-CyberSecurity final project generated data and model artifacts
 final_project/data/raw/*.csv
 final_project/data/processed/*.csv
+final_project/logs/*.csv
 final_project/models/*.pkl
 final_project/models/*.joblib
 final_project/models/*.pt

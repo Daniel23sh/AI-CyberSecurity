@@ -26,6 +26,16 @@ FINAL_COLUMNS = [
 ]
 
 
+def normalize_email_text(text: str | None) -> str:
+    """Normalize one email text value for inference without changing dataset cleaning."""
+    if text is None:
+        return ""
+
+    normalized = str(text).replace("\r", " ").replace("\n", " ")
+    normalized = " ".join(normalized.split())
+    return normalized[:MAX_TEXT_LENGTH]
+
+
 @dataclass(frozen=True)
 class PreprocessingStats:
     raw_rows: int
